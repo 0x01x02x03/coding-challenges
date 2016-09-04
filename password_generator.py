@@ -2,19 +2,23 @@ import random
 import string
 
 
-def main(): # in main
+def main():
+    print("[*] Welcome to Password Generator")
+    print("[*] Remember that strong password should be longer than 8 characters!")
     length = input("[*] Enter how long would you like your password to be: ")
     if length.isdigit():
         length = int(length)
     else:
-        print("[*] Enter a number!")
+        print("[*] Please enter a number!")
         return
-    password = generate(length)
-    if check(password):
-        print("[*] Your password has been generated: " + ''.join(password))
+    if length <= 3:
+        print("[*] It's not possible to generate the password. Please use longer one. ")
     else:
-        main()
-
+        password_strong = False
+        while not password_strong:
+            password = generate(length)
+            password_strong = check(password)
+        print("[*] Your password has been generated: " + ''.join(password))
 def generate(length):
     password = ''.join(random.SystemRandom().choice(string.ascii_letters + string.punctuation + string.digits) for _ in range(length))
     return password
