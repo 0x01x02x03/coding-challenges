@@ -1,7 +1,7 @@
 def prime_factors(x):
     a = 2
     factors = []
-    while a * a <= x:
+    while a * a <= x != 0:
         if x % a:
             a += 1
         else:
